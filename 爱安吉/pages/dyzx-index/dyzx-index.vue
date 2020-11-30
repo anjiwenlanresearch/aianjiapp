@@ -71,10 +71,10 @@
 		changegoodtype:function(index,id){
 			window.event?window.event.cancelBubble=true : e.stopPropagation();
 			uni.request({
-				url:'https://www.meilianji.cn/web/news/add_tieba_goods_num.php',
+				url:this.globalUrl +'/news/add_tieba_goods_num.php',
 				data:{
                 tieba_content_id:id,
-				user_id:63714,
+				user_id:uni.getStorageSync("user_id"),
 				is_new:1
 				},
 				dataType:"json",
@@ -100,12 +100,12 @@
 			},
 		getluntanlist:function(){
 			uni.request({
-				url:'https://www.meilianji.cn/web/news/get_tieba_content_by_category.php',
+				url:this.globalUrl +'/news/get_tieba_content_by_category.php',
 				data:{
 					recs:15,
 					page:this.page,
 					tieba_category_id:4,
-					user_id:63714
+					user_id:uni.getStorageSync("user_id")
 				},
 				dataType:"json",
 				method:"POST",

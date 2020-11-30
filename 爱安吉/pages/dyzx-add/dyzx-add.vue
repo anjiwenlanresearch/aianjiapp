@@ -41,14 +41,14 @@
 			submitmsg:function(){
 				        var dataobj=[{
 							"tieba_category_id":4,
-							"user_id":63714,
+							"user_id":uni.getStorageSync("user_id"),
 							"title":this.inputtitle,
 							"content":this.inputcontent,
 							"pic":this.subimgarr.join(";"),
 							"video_code":this.videosrc
 						}];
 						uni.request({
-							url:"https://www.meilianji.cn/web/news/release_content.php?json="+encodeURIComponent(JSON.stringify(dataobj)),
+							url:this.globalUrl+"/news/release_content.php?json="+encodeURIComponent(JSON.stringify(dataobj)),
 							data:{
 							},
 							dataType:"json",
@@ -92,7 +92,7 @@
 			uploadimg:function(a){
 				if(a<this.upimgarr.length){//图片上传
 				var d = new Date();
-				var imgName=d.getTime()+'10072';		
+				var imgName=d.getTime()+uni.getStorageSync("user_id");		
 				uni.uploadFile({
 					url:'https://www.meilianji.cn/radio/uploadimg/index.php?imgName='+imgName+'&imgPath=dyzx',
 					filePath:this.upimgarr[a].imgsrc,
@@ -125,9 +125,9 @@
             tmp = tmp.substr(0,10);
             var sig=  MD5(tmp +"32dd3c0eb6340a932a990e5832a0d2cf");
 			var d = new Date();
-			var imgName=d.getTime()+'10072';		
+			var imgName=d.getTime()+uni.getStorageSync("user_id");		
 		    uni.uploadFile({
-					url:'http://www.meilianji.cn/web/upload/uploadImg.php?imgName='+imgName+'&imgPath=dyzx&timestamp='+tmp+'&sign='+sig,
+					url:this.globalUrl +'/upload/uploadImg.php?imgName='+imgName+'&imgPath=dyzx&timestamp='+tmp+'&sign='+sig,
 					filePath:this.videolicalurl,
 					fileType: 'video',
 					name:'filename',

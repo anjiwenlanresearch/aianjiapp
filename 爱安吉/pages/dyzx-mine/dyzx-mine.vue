@@ -59,10 +59,10 @@
 			},
 		changegoodtype:function(index,id){
 			uni.request({
-				url:'https://www.meilianji.cn/web/news/add_tieba_goods_num.php',
+				url:this.globalUrl +'/news/add_tieba_goods_num.php',
 				data:{
                 tieba_content_id:id,
-				user_id:63714,
+				user_id:uni.getStorageSync("user_id"),
 				is_new:1
 				},
 				dataType:"json",
@@ -88,9 +88,9 @@
 			},
 		getluntanlist:function(){//获取个人发布的第一资讯列表
 			uni.request({
-				url:'https://www.meilianji.cn/web/news/get_user_tieba_content2.php',
+				url:this.globalUrl +'/news/get_user_tieba_content2.php',
 				data:{
-					user_id:63714,
+					user_id:uni.getStorageSync("user_id"),
 					page:this.page,
 					recs:10
 				},

@@ -94,7 +94,7 @@ Vue.prototype.callPhone = function(tel) { //打电话
 			},
 			// 失败回调
 			fail: (res) => {
-				alert('调用失败!')
+				alert('调用失败aatest!')
 			}
 		});
 	}
